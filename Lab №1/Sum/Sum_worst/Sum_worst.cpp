@@ -93,7 +93,7 @@ int main() {
         time2.push_back(diff.count()/cycles);
     }
 
-    std::ofstream outFile("Sum.csv");
+    std::ofstream outFile("Sum_worst.csv");
     for (size_t i = 0; i < time1.size(); ++i) {
         outFile << number[i] << "," << time1[i] <<"," << time2[i] << std::endl;
     }
