@@ -65,7 +65,7 @@ int change_step (int k, int& i){
     return i;
 }
 
-double measure_time(bool (*func)(std::size_t &, std::size_t &, int *&, int &, std::size_t &), std::size_t& read, std::size_t& write, int*& data, int element, std::size_t& capacity) {
+long double measure_time(bool (*func)(std::size_t &, std::size_t &, int *&, int &, std::size_t &), std::size_t& read, std::size_t& write, int*& data, int element, std::size_t& capacity) {
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();    
     bool result = func(read, write, data, element, capacity);
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
@@ -88,6 +88,8 @@ int main(){
     for (int N = 10; N<=100000; N+=i){
         change_step(N,i);
         number.push_back(N);
+        time_push_cycles = 0;
+        time_poll_cycles = 0;
 
         for (int i=0; i!=cycles; ++i){
             queue_new(read,write,data,capacity);
