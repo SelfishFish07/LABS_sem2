@@ -20,6 +20,7 @@ void pushback_A(int*& array, int& size, int& capacity, int new_elem) {
     copy_array(array, new_array, size);
     array[size] = new_elem;
     ++size;
+    ++capacity;
 }
 
 void pushback_B(int*& array, int& size, int& capacity, int new_elem) {
