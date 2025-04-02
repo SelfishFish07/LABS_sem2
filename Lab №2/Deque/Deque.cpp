@@ -1,116 +1,127 @@
 #include <iostream>
-#include <fstream>
-#include <chrono>
-#include <vector>
+#include <cstring>
+#include <cassert>
 
+struct Deque {
+    size_t element_size;
+    size_t capacity;
+    size_t read_element_offset;
+    size_t write_element_offset;
+    void* buffer;
+};
 
-void deque_new(std::size_t &read, std::size_t &write, void* &data, std::size_t &capacity){
-    read = 0;
-    write = 0;
-    capacity = 1;
-    data = new int[capacity];
+void deque_new(Deque* deque, size_t capacity, size_t element_size) {
+    deque->element_size = element_size;
+    deque->capacity = capacity;
+    deque->read_element_offset = 0;
+    deque->write_element_offset = 0;
+    deque->buffer = malloc(capacity * element_size);
 }
 
-void deque_del(void* &data){
-    delete [] data;
-    data = nullptr;
-}
-
-
-bool push_front(std::size_t &read, std::size_t &write, void* &data, void const *element, std::size_t &capacity) {
-    if ((write + 1) % capacity == read) {
-        resize(data, read, write, capacity);
+void deque_del(Deque* deque) {
+    if (deque->buffer != nullptr) {
+        free(deque->buffer);
+        deque->buffer = nullptr;
     }
-    read = (read == 0) ? capacity - 1 : read - 1;
-    data[read] = element;
-    return true;
 }
 
-bool push_back(std::size_t &read, std::size_t &write, void* &data, void const *element, std::size_t &capacity) {
-    if ((write + 1) % capacity == read) {
-        resize(data, read, write, capacity);
-    }
-    data[write] = element;
-    write = (write + 1) % capacity;
-    return true;
-}
+bool deque_resize(Deque* deque) {
+    size_t new_capacity = deque->capacity * 2;
+    void* new_buffer = malloc(new_capacity * deque->element_size);
 
-bool poll_front(std::size_t &read, std::size_t &write, void* &data, void const *element, std::size_t &capacity) {
-    if (read==write) {
+    if (new_buffer==nullptr){
         return false;
     }
-    element = data[read];
-    read = (read + 1) % capacity;
+
+    size_t read = deque->read_element_offset;
+    size_t write = 0;
+
+    while (read != deque->write_element_offset) {
+        std::memcpy(static_cast<char*>(new_buffer) + write, static_cast<char*>(deque->buffer) + read, deque->element_size);
+        read = (read + deque->element_size) % (deque->capacity * deque->element_size);
+        write += deque->element_size;
+    }
+
+    free(deque->buffer);
+
+    deque->buffer = new_buffer;
+    deque->capacity = new_capacity;
+    deque->read_element_offset = 0;
+    deque->write_element_offset = write;
+    std:: cout << "Deque was resized. New capacity: " << new_capacity<< std::endl;
     return true;
 }
 
-bool poll_back(std::size_t &read, std::size_t &write, void* &data, void const *element, std::size_t &capacity) {
-    if (read==write) {
+bool deque_empty(Deque* deque) {
+    return deque->read_element_offset == deque->write_element_offset;
+}
+
+bool deque_full(Deque* deque) {
+    return ((deque->write_element_offset + deque->element_size) % (deque->capacity * deque->element_size)) == deque->read_element_offset;
+}
+
+bool deque_push_front(Deque* deque, const void* data) {
+    if (deque_full(deque)) {
+        if (!deque_resize(deque)){
+            return false;
+        }
+    }
+
+    deque->read_element_offset = (deque->read_element_offset - deque->element_size) %(deque->capacity * deque->element_size);
+
+    std::memcpy(static_cast<char*>(deque->buffer) + deque->read_element_offset, data,deque->element_size);
+    return true;
+}
+
+bool deque_poll_front(Deque* deque, void* dest) {
+    if (deque_empty(deque)){
         return false;
     }
-    write = (write == 0) ? capacity - 1 : write - 1;
-    element = data[write];
+    std::memcpy(dest, static_cast<char*>(deque->buffer) + deque->read_element_offset, deque->element_size);
+    deque->read_element_offset = (deque->read_element_offset + deque->element_size) % (deque->capacity * deque->element_size);
     return true;
 }
 
-int change_step (int k, int& i){
-    if (k < 100) {
-        i = 10;
-    } else if (k < 1000) {
-        i = 100;
-    } else if (k < 10000) {
-        i = 500;
-    } else {
-        i = 1000;
+bool deque_push_back(Deque* deque, const void* data) {
+    if (deque_full(deque)) {
+        if (!deque_resize(deque)){
+            return false;
+        }
     }
-    return i;
+
+    std::memcpy(static_cast<char*>(deque->buffer) + deque->write_element_offset, data,deque->element_size);
+
+    deque->write_element_offset = (deque->write_element_offset + deque->element_size) % (deque->capacity * deque->element_size);
+    return true;
 }
 
-double measure_time(bool (*func)(std::size_t &, std::size_t &, int *&, int &, std::size_t &), std::size_t& read, std::size_t& write, int*& data, int element, std::size_t& capacity) {
-    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();    
-    bool result = func(read, write, data, element, capacity);
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::chrono::duration<long double, std::micro> diff = end-start;
-    return diff.count();
+bool deque_poll_back(Deque* deque, void* dest) {
+    if (deque_empty(deque)){
+        return false;
+    }
+    deque->write_element_offset = (deque->write_element_offset - deque->element_size) %(deque->capacity * deque->element_size);
+    std::memcpy(dest, static_cast<char*>(deque->buffer) + deque->write_element_offset, deque->element_size);
+    return true;
 }
-int main(){
 
-    std::vector<long double> time_push;
-    std::vector<long double> time_poll;
-    long double time_push_cycles,time_poll_cycles;
-    std::vector<int> number;
+int main() {
+    Deque* deque;
+    deque_new(deque, 5, sizeof(int));
+    int value1 = 10;
+    int value2 = 20;
+    deque_push_back(deque, &value1);
+    deque_push_front(deque, &value2);
+    deque_push_back(deque, &value1);
+    deque_push_front(deque, &value2);
+    deque_push_back(deque, &value1);
+    deque_push_front(deque, &value2);
+    int result1;
+    deque_poll_front(deque, &result1);
+    std::cout << "Poll front: " << result1 << std::endl;
+    int result2;
+    deque_poll_back(deque, &result2);
+    std::cout << "Poll back: " << result2 << std::endl;
 
-    int cycles = 50;
-
-    int* data = nullptr;
-    size_t read = 0, write= 0, capacity = 1;
-
-    // int i = 10;
-    // for (int N = 10; N<=100000; N+=i){
-    //     change_step(N,i);
-    //     number.push_back(N);
-
-    //     for (int i=0; i!=cycles; ++i){
-    //         queue_new(read,write,data,capacity);
-    //         for (int i = 0; i < N; ++i) {
-    //             time_push_cycles += measure_time(queue_push, read, write, data, i, capacity);
-    //         }
-        
-    //         for (int i = 0; i < N; ++i) {
-    //             int element;
-    //             time_poll_cycles += measure_time(queue_poll, read, write, data, element, capacity);
-    //         }
-    //         queue_del(data);
-    //     }
-
-    //     time_push.push_back(time_push_cycles/(cycles*N));  
-    //     time_poll.push_back(time_poll_cycles/(cycles*N));      
-
-    // }
-
-    // std::ofstream outFile("Queue.csv");
-    // for (size_t i = 0; i < time_push.size(); ++i) {
-    //     outFile << number[i] << "," << time_push[i] <<"," << time_poll[i] << std::endl;
-    // }
-    // return 0;
+    deque_del(deque);
+    return 0;
 }
