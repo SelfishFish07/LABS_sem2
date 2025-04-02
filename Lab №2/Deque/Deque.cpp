@@ -11,18 +11,20 @@ struct Deque {
 };
 
 void deque_new(Deque* deque, size_t capacity, size_t element_size) {
-    deque->element_size = element_size;
-    deque->capacity = capacity;
-    deque->read_element_offset = 0;
-    deque->write_element_offset = 0;
-    deque->buffer = malloc(capacity * element_size);
+    if (deque!=nullptr){
+        deque->element_size = element_size;
+        deque->capacity = capacity;
+        deque->read_element_offset = 0;
+        deque->write_element_offset = 0;
+        deque->buffer = malloc(capacity * element_size);
+    } else {
+        std::cout << "Try again. Deque == nullptr";
+    }
 }
 
 void deque_del(Deque* deque) {
-    if (deque->buffer != nullptr) {
-        free(deque->buffer);
-        deque->buffer = nullptr;
-    }
+    free(deque->buffer);
+    deque->buffer = nullptr;
 }
 
 bool deque_resize(Deque* deque) {

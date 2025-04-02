@@ -3,33 +3,44 @@
 #include <chrono>
 #include <vector>
 
-void pushback_A(int*& array, int& size, int& capacity, int new_elem) {
-
-    int* new_array = new int[size+1];
+void copy_array(int*& array,int*& new_array, int& size){
     for (int i = 0; i < size; ++i) {
         new_array[i] = array[i];
     }
     delete[] array;
     array = new_array;
+}
+
+void pushback_A(int*& array, int& size, int& capacity, int new_elem) {
+    if (array == nullptr){
+        size = 0;
+        capacity = 0;
+    }
+    int* new_array = new int[size+1];
+    copy_array(array, new_array, size);
     array[size] = new_elem;
     ++size;
 }
 
 void pushback_B(int*& array, int& size, int& capacity, int new_elem) {
+    if (array == nullptr){
+        size = 0;
+        capacity = 0;
+    }
     if (size >= capacity) {
         capacity += 100;
         int* new_array = new int[capacity];
-        for (int i = 0; i < size; ++i) {
-            new_array[i] = array[i];
-        }
-        delete[] array;
-        array = new_array;
+        copy_array(array, new_array, size);
     }
     array[size] = new_elem;
     ++size;
 }
 
 void pushback_C(int*& array, int& size, int& capacity, int new_elem) {
+    if (array == nullptr){
+        size = 0;
+        capacity = 0;
+    }
     if (size >= capacity) {
         if (capacity==0){
             capacity = 1;
@@ -37,11 +48,7 @@ void pushback_C(int*& array, int& size, int& capacity, int new_elem) {
             capacity *= 2;
         }
         int* new_array = new int[capacity];
-        for (int i = 0; i < size; ++i) {
-            new_array[i] = array[i];
-        }
-        delete[] array;
-        array = new_array;
+        copy_array(array, new_array, size);
     }
     array[size] = new_elem;
     ++size;
@@ -99,7 +106,6 @@ int main(){
                 time_push_cycles+=measure_time(pushback_A,arrayA,sizeA,capacityA,j);
             }
             int* arrayA = nullptr;
-            sizeA = 0;
         }
         timeA.push_back(time_push_cycles/(cycles*N));
 
@@ -110,7 +116,6 @@ int main(){
                 time_push_cycles+=measure_time(pushback_B,arrayB,sizeB,capacityB,j);
             }
             int* arrayB = nullptr;
-            sizeB = 0,capacityB=0;
         }
         timeB.push_back(time_push_cycles/(cycles*N));
 
@@ -121,7 +126,6 @@ int main(){
                 time_push_cycles+=measure_time(pushback_C,arrayC,sizeC,capacityC,j);
             }
             int* arrayC = nullptr;
-            sizeC = 0,capacityC=0;
         }
         timeC.push_back(time_push_cycles/(cycles*N));      
     }
