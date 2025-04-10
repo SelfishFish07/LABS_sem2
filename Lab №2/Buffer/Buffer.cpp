@@ -106,7 +106,7 @@ int main(){
             for (int j = 0; j < N; ++j) {
                 time_push_cycles+=measure_time(pushback_A,arrayA,sizeA,capacityA,j);
             }
-            int* arrayA = nullptr;
+            arrayA = nullptr;
         }
         timeA.push_back(time_push_cycles/(cycles*N));
 
@@ -116,7 +116,7 @@ int main(){
             for (int j = 0; j < N; ++j) {
                 time_push_cycles+=measure_time(pushback_B,arrayB,sizeB,capacityB,j);
             }
-            int* arrayB = nullptr;
+            arrayB = nullptr;
         }
         timeB.push_back(time_push_cycles/(cycles*N));
 
@@ -126,7 +126,7 @@ int main(){
             for (int j = 0; j < N; ++j) {
                 time_push_cycles+=measure_time(pushback_C,arrayC,sizeC,capacityC,j);
             }
-            int* arrayC = nullptr;
+            arrayC = nullptr;
         }
         timeC.push_back(time_push_cycles/(cycles*N));      
     }
