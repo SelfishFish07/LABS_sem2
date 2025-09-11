@@ -1,0 +1,3 @@
+/workspaces/LABS_sem2/week1/task3/build/CMakeFiles/trigonometry.dir
+/workspaces/LABS_sem2/week1/task3/build/CMakeFiles/edit_cache.dir
+/workspaces/LABS_sem2/week1/task3/build/CMakeFiles/rebuild_cache.dir
