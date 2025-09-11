@@ -1,4 +1,4 @@
-# Install script for directory: /workspaces/LABS_sem2/week1/task2/ASCII-Tetris
+# Install script for directory: /workspaces/LABS_sem2/week1/task2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/workspaces/LABS_sem2/week1/task2/build1/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

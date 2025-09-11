@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspaces/LABS_sem2/week1/task2/ASCII-Tetris
+CMAKE_SOURCE_DIR = /workspaces/LABS_sem2/week1/task2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build
+CMAKE_BINARY_DIR = /workspaces/LABS_sem2/week1/task2/build1
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tetris.dir/depend.make
@@ -70,32 +70,32 @@ include CMakeFiles/tetris.dir/progress.make
 include CMakeFiles/tetris.dir/flags.make
 
 CMakeFiles/tetris.dir/main.c.o: CMakeFiles/tetris.dir/flags.make
-CMakeFiles/tetris.dir/main.c.o: /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/main.c
+CMakeFiles/tetris.dir/main.c.o: /workspaces/LABS_sem2/week1/task2/main.c
 CMakeFiles/tetris.dir/main.c.o: CMakeFiles/tetris.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tetris.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/main.c.o -MF CMakeFiles/tetris.dir/main.c.o.d -o CMakeFiles/tetris.dir/main.c.o -c /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/LABS_sem2/week1/task2/build1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tetris.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/main.c.o -MF CMakeFiles/tetris.dir/main.c.o.d -o CMakeFiles/tetris.dir/main.c.o -c /workspaces/LABS_sem2/week1/task2/main.c
 
 CMakeFiles/tetris.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/main.c > CMakeFiles/tetris.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /workspaces/LABS_sem2/week1/task2/main.c > CMakeFiles/tetris.dir/main.c.i
 
 CMakeFiles/tetris.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/main.c -o CMakeFiles/tetris.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /workspaces/LABS_sem2/week1/task2/main.c -o CMakeFiles/tetris.dir/main.c.s
 
 CMakeFiles/tetris.dir/tetris.c.o: CMakeFiles/tetris.dir/flags.make
-CMakeFiles/tetris.dir/tetris.c.o: /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/tetris.c
+CMakeFiles/tetris.dir/tetris.c.o: /workspaces/LABS_sem2/week1/task2/tetris.c
 CMakeFiles/tetris.dir/tetris.c.o: CMakeFiles/tetris.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tetris.dir/tetris.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/tetris.c.o -MF CMakeFiles/tetris.dir/tetris.c.o.d -o CMakeFiles/tetris.dir/tetris.c.o -c /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/tetris.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspaces/LABS_sem2/week1/task2/build1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tetris.dir/tetris.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tetris.dir/tetris.c.o -MF CMakeFiles/tetris.dir/tetris.c.o.d -o CMakeFiles/tetris.dir/tetris.c.o -c /workspaces/LABS_sem2/week1/task2/tetris.c
 
 CMakeFiles/tetris.dir/tetris.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tetris.dir/tetris.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/tetris.c > CMakeFiles/tetris.dir/tetris.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /workspaces/LABS_sem2/week1/task2/tetris.c > CMakeFiles/tetris.dir/tetris.c.i
 
 CMakeFiles/tetris.dir/tetris.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tetris.dir/tetris.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/tetris.c -o CMakeFiles/tetris.dir/tetris.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /workspaces/LABS_sem2/week1/task2/tetris.c -o CMakeFiles/tetris.dir/tetris.c.s
 
 # Object files for target tetris
 tetris_OBJECTS = \
@@ -109,7 +109,7 @@ tetris: CMakeFiles/tetris.dir/main.c.o
 tetris: CMakeFiles/tetris.dir/tetris.c.o
 tetris: CMakeFiles/tetris.dir/build.make
 tetris: CMakeFiles/tetris.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable tetris"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspaces/LABS_sem2/week1/task2/build1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable tetris"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tetris.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -121,6 +121,6 @@ CMakeFiles/tetris.dir/clean:
 .PHONY : CMakeFiles/tetris.dir/clean
 
 CMakeFiles/tetris.dir/depend:
-	cd /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspaces/LABS_sem2/week1/task2/ASCII-Tetris /workspaces/LABS_sem2/week1/task2/ASCII-Tetris /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build /workspaces/LABS_sem2/week1/task2/ASCII-Tetris/build/CMakeFiles/tetris.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /workspaces/LABS_sem2/week1/task2/build1 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspaces/LABS_sem2/week1/task2 /workspaces/LABS_sem2/week1/task2 /workspaces/LABS_sem2/week1/task2/build1 /workspaces/LABS_sem2/week1/task2/build1 /workspaces/LABS_sem2/week1/task2/build1/CMakeFiles/tetris.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tetris.dir/depend
 

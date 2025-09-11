@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/workspaces/LABS_sem2/week1/task2/ASCII-Tetris/.
+C_INCLUDES = -I/workspaces/LABS_sem2/week1/task2/.
 
 C_FLAGS = -std=c11
 

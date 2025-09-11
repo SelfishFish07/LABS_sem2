@@ -53,5 +53,6 @@
         "concepts": "cpp",
         "numbers": "cpp"
     },
-    "cmake.sourceDirectory": "/workspaces/LABS_sem2/week1"
+    "cmake.sourceDirectory": "/workspaces/LABS_sem2/week1",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
