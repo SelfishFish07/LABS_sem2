@@ -86,29 +86,35 @@ int main() {
     Dice d100(100, 42);
     PenaltyDice pd(d100);
     BonusDice bd(d100);
+    ThreeDicePool threed(6, 1, 2, 3);
 
     std::cout << "Exp. value for PenaltyDice(100): " << expected_value(pd,10000) << "\n";
     std::cout << "Exp. value for BonusDice(100): " << expected_value(bd,10000) << "\n";
 
     std::vector<double> hist_d100;
-    for (int v = 0; v != 100; v++) {
+    for (int v = 1; v != 101; v++) {
         hist_d100.push_back(value_probability(v, d100,10000));
     }
 
     std::vector<double> hist_pd100;
-    for (int v = 0; v != 100; v++) {
+    for (int v = 1; v != 101; v++) {
         hist_pd100.push_back(value_probability(v, pd,10000));
     }
 
     std::vector<double> hist_bd100;
-    for (int v = 0; v != 100; v++) {
+    for (int v = 1; v != 101; v++) {
         hist_bd100.push_back(value_probability(v, bd,10000));
     }
 
-    std::ofstream file("data.txt");
+    std::vector<double> hist_3d100;
+    for (int v = 1; v != 19; v++) {
+        hist_3d100.push_back(value_probability(v, threed,100000));
+    }
+
+    std::ofstream file("data_2.txt");
     
     for (size_t i = 0; i < hist_d100.size(); ++i) {
-        file << hist_d100[i] << " " << hist_pd100[i] << " " << hist_bd100[i] << std::endl;
+        file << hist_d100[i] << " " << hist_pd100[i] << " " << hist_bd100[i]<< " " << hist_3d100[i] << std::endl;
     }
     
     file.close();

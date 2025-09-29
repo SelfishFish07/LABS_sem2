@@ -115,7 +115,7 @@ int main() {
     std::cout << "Exp. value for DoubleDice(100): " << expected_value(doubled) << "\n";
     
     std::vector<double> hist_dd;
-    for (int v = 0; v != 100; v++) {
+    for (int v = 1; v != 101; v++) {
         hist_dd.push_back(value_probability(v, doubled,10000));
     }
 
