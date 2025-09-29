@@ -48,6 +48,11 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "cstring": "cpp",
-        "cinttypes": "cpp"
-    }
+        "cinttypes": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "numbers": "cpp"
+    },
+    "cmake.sourceDirectory": "/workspaces/LABS_sem2/week1",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }

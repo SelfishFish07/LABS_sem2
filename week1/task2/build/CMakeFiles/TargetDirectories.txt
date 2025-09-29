@@ -1,0 +1,3 @@
+/workspaces/LABS_sem2/week1/task2/build1/CMakeFiles/tetris.dir
+/workspaces/LABS_sem2/week1/task2/build1/CMakeFiles/edit_cache.dir
+/workspaces/LABS_sem2/week1/task2/build1/CMakeFiles/rebuild_cache.dir
