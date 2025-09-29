@@ -45,6 +45,6 @@ int main() {
     Dice d(6, 42);
     ThreeDicePool threed(6, 1, 2, 3);
 
-    std::cout << "E[Dice(6)] ≈ " << expected_value(d,1000) << "\n";
-    std::cout << "E[ThreeDicePool(6)] ≈ " << expected_value(threed,1000) << "\n";
+    std::cout << "Exp. value for Dice(6): " << expected_value(d,1000) << "\n";
+    std::cout << "Exp. value for ThreeDicePool(6): " << expected_value(threed,1000) << "\n";
 }
