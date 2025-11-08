@@ -47,6 +47,22 @@ public:
         return *this;
     }
 
+    Grid(Grid &&other) : data(other.data), size(other.size) {
+        other.data = nullptr;
+        other.size = 0;
+    }
+
+    Grid& operator=(Grid &&other) {
+        if (this != &other) {
+            delete[] data;
+            data = other.data;
+            size = other.size;
+            other.data = nullptr;
+            other.size = 0;
+        }
+        return *this;
+    }
+
     T operator()(size_type x) const {
         return data[x];
     }
@@ -98,6 +114,22 @@ public:
         Grid tmp(other);
         std::swap(data, tmp.data);
         std::swap(size, tmp.size);
+        return *this;
+    }
+
+    Grid(Grid &&other) : data(other.data), size(other.size) {
+        other.data = nullptr;
+        other.size = 0;
+    }
+
+    Grid& operator=(Grid &&other) {
+        if (this != &other) {
+            delete[] data;
+            data = other.data;
+            size = other.size;
+            other.data = nullptr;
+            other.size = 0;
+        }
         return *this;
     }
 

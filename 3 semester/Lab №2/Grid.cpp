@@ -43,6 +43,25 @@ public:
         return *this;
     }
 
+    Grid(Grid &&other) : data(other.data), y_size(other.y_size), x_size(other.x_size) {
+        other.data = nullptr;
+        other.y_size = 0;
+        other.x_size = 0;
+    }
+
+    Grid& operator=(Grid &&other) {
+        if (this != &other) {
+            delete[] data;
+            data = other.data;
+            y_size = other.y_size;
+            x_size = other.x_size;
+            other.data = nullptr;
+            other.y_size = 0;
+            other.x_size = 0;
+        }
+        return *this;
+    }
+
 
     T operator() (size_type y, size_type x) const {
         return data[y*x_size + x];
@@ -58,6 +77,7 @@ public:
         }
         return *this;
     }
+
     //Indexing 
 
 private:
@@ -71,7 +91,7 @@ private:
             return row[x];
         }
 
-        T const& operator[](size_type x) const {
+        T operator[](size_type x) const {
             return row[x];
         }
     };
@@ -86,9 +106,7 @@ public:
     row_proxy const operator[](size_type y) const {
         return row_proxy(data + y*x_size);
     }
-
-// Multidimesional
-
+    
 private:
     T* data;
     size_type y_size, x_size;
