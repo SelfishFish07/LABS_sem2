@@ -1,7 +1,22 @@
 #include <algorithm>
 #include <iostream>
 #include <cassert>
+#include <utility>
 using namespace std;
+
+template <typename T>
+void swap(T &a,T &b){
+    T temp = std::move(a);
+    a = std::move(b);
+    b = std::move(temp);
+}
+
+
+template <typename T, typename F>
+struct Pair{
+        T a;
+        F b;  
+};
 
 template <typename T, unsigned N>
 class Grid;
@@ -150,3 +165,26 @@ public:
         return (*data[i])(args...); 
     }
 };
+
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+using namespace std;
+
+vector<int> majorityKElements(const vector<int>& nums, const int k) {
+    unordered_map<int, int> count;
+    for (int num : nums) {
+        count[num]++;
+    }
+    
+    vector<int> unique;
+    for (auto& p : count) {
+        unique.push_back(p.first);
+    }\
+    
+    sort(unique.begin(), unique.end(), [&](int a, int b) {
+        return count[a] > count[b];
+    });
+    
+    return vector<int>(unique.begin(), unique.begin() + k);
+}

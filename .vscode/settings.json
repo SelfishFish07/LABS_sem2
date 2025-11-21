@@ -51,7 +51,15 @@
         "cinttypes": "cpp",
         "compare": "cpp",
         "concepts": "cpp",
-        "numbers": "cpp"
+        "numbers": "cpp",
+        "charconv": "cpp",
+        "format": "cpp",
+        "iomanip": "cpp",
+        "semaphore": "cpp",
+        "span": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "variant": "cpp"
     },
     "cmake.sourceDirectory": "/workspaces/LABS_sem2/week1",
     "C_Cpp.default.compilerPath": "/usr/bin/g++"

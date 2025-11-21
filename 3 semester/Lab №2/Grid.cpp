@@ -43,13 +43,14 @@ public:
         return *this;
     }
 
-    Grid(Grid &&other) : data(other.data), y_size(other.y_size), x_size(other.x_size) {
+    Grid(Grid &&other) : data(other.data), y_size(other.y_size), x_size(other.x_size) noexcept {
         other.data = nullptr;
         other.y_size = 0;
         other.x_size = 0;
+        data = std::exchange(other.data, nullptr);
     }
 
-    Grid& operator=(Grid &&other) {
+    Grid& operator=(Grid &&other) noexcept {
         if (this != &other) {
             delete[] data;
             data = other.data;
@@ -63,7 +64,7 @@ public:
     }
 
 
-    T operator() (size_type y, size_type x) const {
+    T conts& operator() (size_type y, size_type x) const {
         return data[y*x_size + x];
     }
 
@@ -91,7 +92,7 @@ private:
             return row[x];
         }
 
-        T operator[](size_type x) const {
+        T const& operator[](size_type x) const {
             return row[x];
         }
     };
